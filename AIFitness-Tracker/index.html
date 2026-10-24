@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1220" />
+  <title>AIFitness — Fitness Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">AI</span><span>AIFitness</span></a>
+    <nav><a href="#dashboard">Dashboard</a><a href="#tracker">Fitness Tracker</a><a href="#guide">Guidance</a></nav>
+    <button id="themeToggle" class="icon-btn" aria-label="Toggle theme">☼</button>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">YOUR PERSONAL FITNESS SPACE</p>
+        <h1>Build a healthier<br /><span>you, one day at a time.</span></h1>
+        <p class="hero-copy">Track your body metrics, understand your goals, and build habits that last.</p>
+        <a class="primary-btn" href="#tracker">Set up your profile <span>↗</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="orb">✦</div><div class="art-label label-top">MOVE WITH PURPOSE</div>
+        <div class="art-label label-bottom">PROGRESS, NOT PERFECTION</div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="section">
+      <div class="section-heading"><div><p class="eyebrow">OVERVIEW</p><h2>Your dashboard</h2></div><span class="date-pill" id="todayDate"></span></div>
+      <div class="stats-grid">
+        <article class="stat-card"><div class="stat-icon purple">⚖</div><p>Current weight</p><strong id="weightStat">— <small>kg</small></strong><span id="weightHint">Add your profile to begin</span></article>
+        <article class="stat-card"><div class="stat-icon green">◎</div><p>Daily calories</p><strong id="calorieStat">— <small>kcal</small></strong><span>Estimated maintenance</span></article>
+        <article class="stat-card"><div class="stat-icon orange">↗</div><p>BMI</p><strong id="bmiStat">—</strong><span id="bmiHint">Based on height and weight</span></article>
+        <article class="stat-card"><div class="stat-icon blue">✦</div><p>Fitness goal</p><strong class="goal-stat" id="goalStat">Not set</strong><span>One step at a time</span></article>
+      </div>
+    </section>
+
+    <section id="tracker" class="section two-col">
+      <div class="panel">
+        <div class="panel-heading"><div><p class="eyebrow">GET STARTED</p><h2>Your fitness profile</h2></div><span class="panel-icon">＋</span></div>
+        <p class="muted">Enter your details to get estimated fitness metrics. Your data is saved in this browser only.</p>
+        <form id="profileForm">
+          <div class="form-grid">
+            <label class="full">Full name<input id="name" name="name" placeholder="e.g. Alex Morgan" required maxlength="60" /></label>
+            <label>Age<input id="age" name="age" type="number" min="13" max="100" placeholder="25" required /></label>
+            <label>Gender<select id="gender" name="gender" required><option value="">Select</option><option value="female">Female</option><option value="male">Male</option><option value="other">Other / prefer not to say</option></select></label>
+            <label>Height (cm)<input id="height" name="height" type="number" min="100" max="250" placeholder="170" required /></label>
+            <label>Weight (kg)<input id="weight" name="weight" type="number" min="25" max="350" step="0.1" placeholder="70" required /></label>
+            <label class="full">Activity level<select id="activity" name="activity" required><option value="">Choose your usual activity</option><option value="1.2">Mostly sitting / little exercise</option><option value="1.375">Light exercise 1–3 days/week</option><option value="1.55">Moderate exercise 3–5 days/week</option><option value="1.725">Hard exercise 6–7 days/week</option><option value="1.9">Very intense activity / physical job</option></select></label>
+            <label class="full">Your goal<select id="goal" name="goal" required><option value="">Choose a goal</option><option value="Lose weight">Lose weight</option><option value="Maintain weight">Maintain weight</option><option value="Gain weight">Gain weight</option><option value="Build muscle">Build muscle</option><option value="Improve fitness">Improve general fitness</option></select></label>
+          </div>
+          <button class="primary-btn full-btn" type="submit">Calculate my metrics <span>→</span></button>
+          <p id="formMessage" class="form-message" role="status"></p>
+        </form>
+      </div>
+
+      <div class="panel result-panel">
+        <div class="panel-heading"><div><p class="eyebrow">YOUR SNAPSHOT</p><h2>Personal insights</h2></div><span class="panel-icon">✦</span></div>
+        <div id="emptyState" class="empty-state"><div class="empty-symbol">◌</div><h3>Your journey starts here</h3><p>Complete your profile to see your estimated BMI, calorie needs, and goal tips.</p></div>
+        <div id="results" class="results hidden">
+          <div class="welcome-line"><span class="avatar" id="avatar">A</span><div><span class="muted small">WELCOME BACK</span><h3 id="welcomeName">Athlete</h3></div></div>
+          <div class="result-box"><div><span class="muted small">BODY MASS INDEX (BMI)</span><strong id="resultBMI">—</strong></div><span id="bmiBadge" class="badge">—</span></div>
+          <div class="result-box"><div><span class="muted small">ESTIMATED MAINTENANCE</span><strong><span id="resultCalories">—</span> kcal/day</strong></div><span class="result-emoji">⚡</span></div>
+          <div class="tip-box"><strong>💡 Your next step</strong><p id="goalTip">Choose a goal to see your suggestion.</p></div>
+          <p class="disclaimer">Estimates are for general education, not medical advice. BMI is a screening measure and does not diagnose health. Calorie needs vary; consult a qualified professional for individual guidance.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="guide" class="section">
+      <div class="section-heading"><div><p class="eyebrow">SMALL HABITS, BIG CHANGE</p><h2>Keep the basics strong</h2></div></div>
+      <div class="habits-grid">
+        <article class="habit-card"><span>01</span><div class="habit-emoji">💧</div><h3>Stay hydrated</h3><p>Keep water nearby and drink regularly throughout the day.</p></article>
+        <article class="habit-card"><span>02</span><div class="habit-emoji">🏃</div><h3>Move daily</h3><p>Choose movement you enjoy and build consistency gradually.</p></article>
+        <article class="habit-card"><span>03</span><div class="habit-emoji">🥗</div><h3>Eat balanced meals</h3><p>Include varied foods and enough energy to support your activity.</p></article>
+        <article class="habit-card"><span>04</span><div class="habit-emoji">🌙</div><h3>Recover well</h3><p>Prioritize sleep and give your body time to recover.</p></article>
+      </div>
+    </section>
+    <footer><a class="brand" href="#"><span class="brand-mark">AI</span><span>AIFitness</span></a><span>Made for steady progress · Demo project</span></footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
